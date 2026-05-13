@@ -9,6 +9,7 @@ function CreateTaskModal({ teamId, closeModal, refreshTasks }) {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [noOfDays, setNoOfDays] = useState("");
+  const [priority, setPriority] = useState("Medium");
 
   useEffect(() => {
     API.get(`/employees/team/${teamId}`)
@@ -17,7 +18,7 @@ function CreateTaskModal({ teamId, closeModal, refreshTasks }) {
   }, [teamId]);
 
   const selectedEmployee = employees.find(
-    (emp) => emp.employeeId === Number(employeeId)
+    (emp) => emp.employeeId === Number(employeeId),
   );
 
   const handleSubmit = async (e) => {
@@ -29,6 +30,7 @@ function CreateTaskModal({ teamId, closeModal, refreshTasks }) {
         taskTitle,
         taskDescription,
         noOfDays: Number(noOfDays),
+        priority,
         status: false,
         assignee: {
           employeeId: Number(employeeId),
@@ -95,6 +97,14 @@ function CreateTaskModal({ teamId, closeModal, refreshTasks }) {
             onChange={(e) => setTaskDescription(e.target.value)}
             required
           />
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+          >
+            <option value="High">High Priority</option>
+            <option value="Medium">Medium Priority</option>
+            <option value="Low">Low Priority</option>
+          </select>
 
           <input
             type="number"

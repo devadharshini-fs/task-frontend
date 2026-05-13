@@ -29,7 +29,8 @@ function Login({ setUser }) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
         setUser(res.data);
-        toast.success("Welcome back 👋");
+        toast.dismiss();
+        toast.success("Welcome back 👋",{duration: 2000});
       } else {
         toast.error(res.data.message);
       }
@@ -43,8 +44,8 @@ function Login({ setUser }) {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h1>Welcome Back 👋</h1>
-        <p>Login to Task Management System</p>
+        <h1>Task Flow 🚀</h1>
+        <p>Smart Task Management for Teams</p>
 
         <form onSubmit={handleLogin}>
           <input
@@ -75,6 +76,20 @@ function Login({ setUser }) {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+        <div className="demo-box">
+          <h4>Demo Credentials</h4>
+          <p>
+            <b>Team Lead:</b> 101 / 1234
+          </p>
+          <p>
+            <b>Employee:</b> 102 / 1234
+          </p>
+        </div>
+        <div className="feature-row">
+          <span>🔐 JWT Secured</span>
+          <span>👥 Role Based</span>
+          <span>📊 Task Tracking</span>
+        </div>
       </div>
     </div>
   );

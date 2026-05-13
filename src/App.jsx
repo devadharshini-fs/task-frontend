@@ -12,9 +12,13 @@ function App() {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setUser(null);
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+
+    if (confirmLogout) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+    }
   };
 
   if (!user) {
@@ -22,15 +26,15 @@ function App() {
   }
 
   return (
-  <>
-    <Toaster position="top-right" />
-    {user.isTeamLead ? (
-      <TeamLeadDashboard user={user} onLogout={handleLogout} />
-    ) : (
-      <EmployeeDashboard user={user} onLogout={handleLogout} />
-    )}
-  </>
-);
+    <>
+      <Toaster position="top-right" />
+      {user.isTeamLead ? (
+        <TeamLeadDashboard user={user} onLogout={handleLogout} />
+      ) : (
+        <EmployeeDashboard user={user} onLogout={handleLogout} />
+      )}
+    </>
+  );
 }
 
 export default App;

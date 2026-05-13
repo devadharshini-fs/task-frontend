@@ -30,8 +30,8 @@ function EmployeeDashboard({ user, onLogout }) {
       filter === "pending"
         ? !task.status
         : filter === "completed"
-        ? task.status
-        : true;
+          ? task.status
+          : true;
 
     const matchesSearch =
       task.taskTitle?.toLowerCase().includes(search.toLowerCase()) ||
@@ -47,7 +47,9 @@ function EmployeeDashboard({ user, onLogout }) {
           <UserCircle size={45} />
           <div>
             <h2>Employee Dashboard</h2>
-            <p>{employee.employeeName} • Employee ID: {employee.employeeId}</p>
+            <p>
+              {employee.employeeName} • Employee ID: {employee.employeeId}
+            </p>
           </div>
         </div>
 
@@ -83,13 +85,22 @@ function EmployeeDashboard({ user, onLogout }) {
         </div>
 
         <div className="filter-box">
-          <button className={filter === "all" ? "active-filter" : ""} onClick={() => setFilter("all")}>
+          <button
+            className={filter === "all" ? "active-filter" : ""}
+            onClick={() => setFilter("all")}
+          >
             All
           </button>
-          <button className={filter === "pending" ? "active-filter" : ""} onClick={() => setFilter("pending")}>
+          <button
+            className={filter === "pending" ? "active-filter" : ""}
+            onClick={() => setFilter("pending")}
+          >
             Pending
           </button>
-          <button className={filter === "completed" ? "active-filter" : ""} onClick={() => setFilter("completed")}>
+          <button
+            className={filter === "completed" ? "active-filter" : ""}
+            onClick={() => setFilter("completed")}
+          >
             Completed
           </button>
         </div>
@@ -103,7 +114,10 @@ function EmployeeDashboard({ user, onLogout }) {
           </div>
         ) : (
           filteredTasks.map((task) => (
-            <div className={`task-card premium-task ${task.status ? "completed-border" : "pending-border"}`} key={task.id}>
+            <div
+              className={`task-card premium-task ${task.status ? "completed-border" : "pending-border"}`}
+              key={task.id}
+            >
               <div className="task-card-header">
                 <h3>{task.taskTitle}</h3>
                 <span className={task.status ? "done" : "pending"}>
@@ -114,12 +128,33 @@ function EmployeeDashboard({ user, onLogout }) {
               <p>{task.taskDescription}</p>
 
               <div className="task-info">
-                <span><b>Project:</b> {task.projectName}</span>
-                <span><b>Days:</b> {task.noOfDays}</span>
+                <span>
+                  <b>Project:</b> {task.projectName}
+                </span>
+                <span>
+                  <b>Days:</b> {task.noOfDays}
+                </span>
+                <span>
+                  <b>Priority:</b>{" "}
+                  <span
+                    className={
+                      (task.priority || "Medium") === "High"
+                        ? "priority-high"
+                        : (task.priority || "Medium") === "Medium"
+                          ? "priority-medium"
+                          : "priority-low"
+                    }
+                  >
+                    {task.priority || "Medium"}
+                  </span>
+                </span>
               </div>
 
               {!task.status && (
-                <button className="complete-btn" onClick={() => completeTask(task.id)}>
+                <button
+                  className="complete-btn"
+                  onClick={() => completeTask(task.id)}
+                >
                   <CheckCircle size={18} /> Mark Completed
                 </button>
               )}

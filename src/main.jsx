@@ -4,12 +4,12 @@ import { Toaster } from "react-hot-toast";
 import App from "./App.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <App />
     <Toaster
   position="top-right"
   toastOptions={{
-    duration: 2500,
+    duration: 2000,
     style: {
       background: "#ffffff",
       color: "#111",
@@ -19,5 +19,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     },
   }}
 />
-  </React.StrictMode>
+  </>
 );
